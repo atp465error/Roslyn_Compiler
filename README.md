@@ -1,2 +1,13 @@
 # RoslynCompiler
-Dynamic code generation using Roslyn compiler under Net Framework 4.0 and higher
+Динамическая компиляция кода с использованием компилятора Roslyn под Net Framework 4.0 и выше.
+
+P.S: Roslyn компилятор позволяет компилировать исходный код под более новые версии **C#**.
+
+Начнём с установки библиотеки для работы с компилятором, заходим в командную строку VS и устанавливаем:
+`Install-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Version 2.0.1`
+
+P.S: https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
+
+Интересные ссылки для работы с данным компилятором:
+1 - https://itvdn.com/ru/blog/article/compiler-roslyn
+2 - https://msdn.microsoft.com/ru-ru/magazine/mt707527.aspx
