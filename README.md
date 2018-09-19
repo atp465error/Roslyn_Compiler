@@ -8,6 +8,18 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 
 P.S: https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
 
+Используемые зависимости:
+
+`using System.CodeDom.Compiler; `
+
+`using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;`
+
+При компиляции: 
+
+За место: `using (var provider = new CSharpCodeProvider())`
+
+Пишем: `using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())`
+
 Интересные ссылки для работы с данным компилятором:
 
 1 - https://itvdn.com/ru/blog/article/compiler-roslyn
