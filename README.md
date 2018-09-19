@@ -16,9 +16,9 @@ P.S: https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPl
 
 При компиляции: 
 
-За место: `using (var provider = new CSharpCodeProvider())` // CodeDom
+За место: `using (var provider = new CSharpCodeProvider())` **CodeDom**
 
-Пишем: `using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())` // Roslyn
+Пишем: `using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())` **Roslyn**
 
 Интересные ссылки для работы с данным компилятором:
 
