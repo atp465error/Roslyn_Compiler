@@ -5,16 +5,14 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 ### Установка
 Начнём с установки библиотеки для работы с компилятором, заходим в командную строку VS и устанавливаем:
 `Install-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Version 2.0.1`
-
 - https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
 
+### Компиляция 
 Используемые зависимости:
 ```
 using System.CodeDom.Compiler;
 using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
 ```
-### Компиляция 
-
 За место: `using (var provider = new CSharpCodeProvider())` **CodeDom**
 
 Пишем: `using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())` **Roslyn**
