@@ -7,6 +7,8 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 `Install-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Version 2.0.1`
 - https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
 
+Отдельно компилятор можно скачать по этой ссылке:
+- https://archive.codeplex.com/?p=roslyn
 ### Компиляция 
 Используемые зависимости:
 ```
