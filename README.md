@@ -5,6 +5,7 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 ### Загрузка Microsoft Visual Studio 2017 Pro + Keys
 Для начала работы потребуется студия которую Вы можете загрузить [Здесь](https://visualstudio.microsoft.com/ru/downloads/). Выбераем *Professional Free* версию и загружаем. 
 После устанавливаем нужные компоненты и запускаем саму студию. 
+
 Активируем студию при помощи ключа: 
 * KBJFW-NXHK6-W4WJM-CRMQB-G3CDH
 * HMGNV-WCYXV-X7G9W-YCX63-B98R2
