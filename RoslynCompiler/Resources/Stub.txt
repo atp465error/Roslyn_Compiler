@@ -1,0 +1,196 @@
+using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using static Stub.Stub.EncodingOut.Structures;
+
+[assembly: AssemblyTitle("Stub")]
+[assembly: AssemblyProduct("Stub")]
+[assembly: AssemblyCopyright("Copyright © Antlion 2018")]
+[assembly: ComVisible(false)]
+[assembly: Guid("6a444681-31d2-4705-a90b-dd49cc5d7140")]
+[assembly: AssemblyVersion("0.0.0.1")]
+[assembly: AssemblyFileVersion("0.0.0.1")]
+
+namespace Stub
+{
+    internal static partial class Program
+    {
+        private static readonly bool False = false;
+
+        private static void Main()
+        {
+            Console.CursorVisible = False;
+            Console.OutputEncoding = Encoding.UTF8;
+            Inizialize();
+            Stub.EncodingOut.Lucida.SetConsoleFont();
+
+            Console.Title = $"[TITLE]";
+            WriteWithOutLine(ConsoleColor.Green, $"Версия .Net Framework: {TargetFrameworkVersion}\r\n");
+
+            Console.WriteLine("Вы ввели текст: [MESSAGE]\r\n");
+            WriteWithOutLine(ConsoleColor.White, "Нажмите любую клавишу для выхода.");
+            Console.ReadLine();
+        }
+        public static void WriteWithOutLine(ConsoleColor color, string Text)
+        {
+            try
+            {
+                Console.ForegroundColor = color;
+                Console.Write(Text);
+                Console.ResetColor();
+            }
+            catch { }
+        }
+
+        private static string TargetFrameworkVersion
+        {
+            get
+            {
+                foreach (AssemblyName reference in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
+                {
+                    if (reference.Name == "mscorlib")
+                    {
+                        return reference.Version.ToString();
+                    }
+                }
+                return "Не найден \"mscorlib\"";
+            }
+        }
+
+        public static void Inizialize()
+        {
+            var wndRect = new RECT();
+            int cWidth = wndRect.Right - wndRect.Left, cHeight = wndRect.Bottom - wndRect.Top,
+                SWP_NOSIZE = 0x1, HWND_TOPMOST = -1, Width = 1350, Height = 350;
+            try
+            {
+                Stub.EncodingOut.NativeMethods.SetWindowPos
+                (
+                    Process.GetCurrentProcess().MainWindowHandle, HWND_TOPMOST,
+                    (Width / 3) - (cWidth / 2), (Height / 2) - (cHeight / 2), 0, 0, SWP_NOSIZE
+                );
+            }
+            catch { }
+        }
+    }
+
+    namespace Stub.EncodingOut
+    {
+        public sealed class Constants
+        {
+            public const int STD_OUTPUT_HANDLE = -11;
+            public const int TMPF_TRUETYPE = 4;
+            public const int LF_FACESIZE = 32;
+        } 
+    }
+    namespace Stub.EncodingOut
+    {
+        internal sealed class Structures
+        {
+            [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+            internal unsafe struct CONSOLE_FONT_INFO_EX
+            {
+                internal uint cbSize;
+                internal uint nFont;
+                internal COORD dwFontSize;
+                internal int FontFamily;
+                internal int FontWeight;
+                internal fixed char FaceName[Constants.LF_FACESIZE];
+            }
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct COORD
+            {
+                internal short X;
+                internal short Y;
+
+                internal COORD(short x, short y)
+                {
+                    this.X = x;
+                    this.Y = y;
+                }
+            }
+
+            // For Position Console
+            [StructLayout(LayoutKind.Sequential)]
+            public struct RECT
+            {
+                public int Left;
+                public int Top;
+                public int Right;
+                public int Bottom;
+            }
+        }
+    }
+    namespace Stub.EncodingOut
+    {
+        internal partial class Lucida
+        {
+            private static IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);
+            public static void SetConsoleFont(string FontName = "Lucida Console", bool False = false)
+            {
+                unsafe
+                {
+                    IntPtr hnd = NativeMethods.GetStdHandle(Constants.STD_OUTPUT_HANDLE);
+                    if (hnd != INVALID_HANDLE_VALUE)
+                    {
+                        var info = new CONSOLE_FONT_INFO_EX();
+                        info.cbSize = (uint)Marshal.SizeOf(info);
+
+                        var newInfo = new CONSOLE_FONT_INFO_EX();
+                        newInfo.cbSize = (uint)Marshal.SizeOf(newInfo);
+                        newInfo.FontFamily = Constants.TMPF_TRUETYPE;
+                        var ptr = new IntPtr(newInfo.FaceName);
+                        Marshal.Copy(FontName.ToCharArray(), 0, ptr, FontName.Length);
+                        newInfo.dwFontSize = new COORD(info.dwFontSize.X, info.dwFontSize.Y);
+                        newInfo.FontWeight = info.FontWeight;
+                        NativeMethods.SetCurrentConsoleFontEx(hnd, False, ref newInfo);
+                    }
+                }
+            }
+        }
+    }
+    namespace Stub.EncodingOut
+    {
+        internal static class NativeMethods
+        {
+            // Encoding console
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern bool SetCurrentConsoleFontEx(
+               IntPtr consoleOutput,
+               bool maximumWindow,
+               ref CONSOLE_FONT_INFO_EX consoleCurrentFontEx);
+
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern IntPtr GetStdHandle(int dwType);
+
+
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern int SetConsoleFont(
+                IntPtr hOut,
+                uint dwFontNum
+                );
+
+            // Position console
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern IntPtr GetConsoleWindow();
+
+            [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
+            public static extern IntPtr SetWindowPos
+            (
+                IntPtr hWnd,
+                int hWndInsertAfter,
+                int x,
+                int Y,
+                int cx,
+                int cy,
+                int wFlags
+            );
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+        }
+    }
+}

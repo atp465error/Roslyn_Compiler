@@ -1,0 +1,25 @@
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+
+[assembly: AssemblyTitle("StubTest_X2")]
+[assembly: AssemblyProduct("StubTest_X2")]
+[assembly: AssemblyCopyright("Copyright © Antlion 2018")]
+[assembly: ComVisible(false)]
+[assembly: Guid("6g454681-3bd2-4705-a90b-dd49cc5d7140")]
+[assembly: AssemblyVersion("0.0.0.1")]
+[assembly: AssemblyFileVersion("0.0.0.1")]
+
+namespace StubTest_X2
+{
+   internal static partial class Program
+   {
+      private static void Main()
+      {
+         Console.Title = $"[TITLE]";
+         Console.WriteLine("Вы ввели текст: [MESSAGE]");
+         Console.ReadLine();
+      }
+   }
+}
