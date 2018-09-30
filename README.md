@@ -1,5 +1,7 @@
 # RoslynCompiler
 Динамическая компиляция кода с использованием компилятора Roslyn под Net Framework 4.0.
+### Демонстрация работы компилятора
+[Перейдите по ссылке для просмотра](https://youtu.be/2lkOFOVgbbA)
 
 P.S: ***Roslyn*** компилятор позволяет компилировать исходный код под более новые версии **C#**.
 ### Загрузка Microsoft Visual Studio 2017 Pro + Keys
@@ -62,5 +64,5 @@ using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
 
 - https://itvdn.com/ru/blog/article/compiler-roslyn
 - https://msdn.microsoft.com/ru-ru/magazine/mt707527.aspx
-
-P.S:  Список ошибок при работе компилятора добавлю позже.
+### Вопросы и ответы
+P.S: Если есть ошибки в проекте, или у Вас что-то не получается напишите мне в телеграм: @xD_Antlion
