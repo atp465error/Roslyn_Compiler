@@ -17,9 +17,11 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 `Install-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Version 2.0.1`
 - https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
 
-В этой библиотеки есть баг в котором не находит путь до папки Roslyn
+В этой библиотеки есть баг в котором не находит путь до папки Roslyn (Нет папки "bin\roslyn", за место неё просто папка Debug\roslyn)
 
 Способ решения для первой библиотеки:
+
+Для того чтобы нам успешно скомпилировать проект нужна папка bin, решаем этот вопрос следующим кодом:
 
 ```
 public static void FixRoslynPath(CSharpCodeProvider CSCP)
@@ -42,7 +44,6 @@ public static void FixRoslynPath(CSharpCodeProvider CSCP)
 }
 ```
 После используем так:
-Используемые зависимости:
 ```
 using System.CodeDom.Compiler;
 using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
@@ -61,3 +62,5 @@ using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
 
 - https://itvdn.com/ru/blog/article/compiler-roslyn
 - https://msdn.microsoft.com/ru-ru/magazine/mt707527.aspx
+
+P.S:  Список ошибок при работе компилятора добавлю позже.
