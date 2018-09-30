@@ -16,6 +16,7 @@ P.S: ***Roslyn*** компилятор позволяет компилирова
 Начнём с установки библиотеки для работы с компилятором, заходим в командную строку VS и устанавливаем:
 `Install-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Version 2.0.1`
 - https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/
+
 В этой библиотеки есть баг в котором не находит путь до папки Roslyn
 
 Способ решения для первой библиотеки:
